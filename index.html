@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sua mãe quer ser minha sogra?</title>
+    <style>
+      button {
+        width: 70px;
+        height: 30px;
+      }
+
+      #yes {
+        color: green;
+      }
+
+      #no {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <center><h1>QUER NAMORAR COMIGO?</h1></center>
+      <br /><br />
+      <div class="buttonsDiv">
+        <center>
+          <button id="yes" onclick="hellYeah()">SIM</button
+          ><button id="no" onclick="choseLoveFunction()">NÃO</button>
+        </center>
+      </div>
+    </div>
+
+    <script>
+      function hellYeah() {
+        window.location.href = "https://www.youtube.com/watch?v=izGwDsrQ1eQ";
+      }
+
+      function choseLoveFunction() {
+        const loveFunctions = {
+          0: changePosition,
+          1: errorToSend,
+          2: networkFailed,
+          3: areYouShure,
+          4: why,
+          5: caraOuCoroa,
+          6: imparOuPar,
+        };
+
+        const keys = Object.keys(loveFunctions);
+        const key = Math.floor(Math.random() * keys.length);
+
+        loveFunctions[key]();
+      }
+
+      function imparOuPar() {
+        const answer = confirm(
+          "Vamos um impar ou par então, se eu ganhar, você sai comigo num encontro, se eu perder eu envio sua resposta como não. Vamos?"
+        );
+
+        if (answer) {
+          const enemyChoose = confirm(
+            "Aperte OK para impar e cancele para par"
+          );
+
+          const enemyNumber = prompt("Digite seu numero");
+
+          if (isNaN(enemyNumber)) {
+            alert(
+              "Você realmente sabe o que é um numero? Na mora, tente novamente!"
+            );
+          } else {
+            const isOdd = Number(enemyNumber) % 2 !== 0;
+
+            const codeNumber = Math.floor(Math.random() * 6);
+
+            const sum = Number(enemyNumber) + Number(codeNumber);
+
+            const answerIsOdd = sum % 2 !== 0;
+
+            alert(
+              `Você escolheu ${enemyNumber} e eu escolhi ${codeNumber}: a Soma é ${sum}`
+            );
+
+            if (enemyChoose && answerIsOdd) {
+              alert(
+                "Você ganhou, porem eu fui enviar a mensagem e a minha internet caiu, Sorry. Tente novamente."
+              );
+              return;
+            }
+
+            if (!enemyChoose && !answerIsOdd) {
+              alert(
+                "Você ganhou, porem eu fui enviar a mensagem e a minha internet caiu, Sorry. Tente novamente."
+              );
+              return;
+            }
+
+            alert("Ganheeeeei");
+            hellYeah();
+          }
+        } else {
+          alert("Então, tente novamente.");
+        }
+      }
+
+      function changePosition() {
+        const button = document.querySelector("button#no");
+        button.style.position = "absolute";
+
+        button.style.left =
+          Math.floor((Math.random() * window.screen.width) / 3 + 1) + "px";
+
+        button.style.top =
+          Math.floor((Math.random() * window.screen.height) / 2 + 1) + "px";
+      }
+
+      function errorToSend() {
+        alert("Falha ao enviar resposta, tente novamente.");
+      }
+
+      function networkFailed() {
+        alert(
+          "Falha ao enviar, verifique sua conexão com a internet e tente novamente."
+        );
+      }
+
+      function areYouShure() {
+        const response = confirm("Certeza que deseja enviar esta resposta?");
+
+        if (response) {
+          alert("Falha ao enviar, puts. Tente de novo!");
+        } else {
+          alert("Ótima escolha");
+        }
+      }
+
+      function why() {
+        prompt("Conte o motivo de sua resposta :(");
+        alert("Texto grande demais, cê é louco(a). Vou enviar isso não!");
+      }
+
+      function caraOuCoroa() {
+        const answer = confirm(
+          "Vamos cara ou corôa, se eu ganhar, você sai comigo num encontro, se eu perder eu envio sua resposta como não. Vamos?"
+        );
+
+        if (answer) {
+          const response = confirm(
+            "Clique em OK para cara e cancele para corôa."
+          );
+
+          const coin = Math.floor(Math.random() * 2);
+
+          const codeAnswer = coin === 0 ? "cara" : "coroa";
+          const enemyAnswer = response === true ? "cara" : "coroa";
+
+          if (enemyAnswer === codeAnswer) {
+            alert(
+              "Você ganhou, mas só que o servidor caiu, ai não consegui enviar sua resposta. Tente novamente!"
+            );
+          } else {
+            alert("Ganheei");
+            hellYeah();
+          }
+        } else {
+          alert("Então, tente novamente!");
+        }
+      }
+    </script>
+  </body>
+</html>
